@@ -13,3 +13,10 @@ node_modules
 .DS_Store
 .idea
 .vscode
+
+# dotenv environment variables file(s)
+.env
+.env.*
+
+# Optional eslint cache
+.eslintcache
