@@ -45,7 +45,7 @@ function App() {
           console.log(err);
         });
     }
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
