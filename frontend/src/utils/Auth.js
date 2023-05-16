@@ -15,7 +15,7 @@ class Api {
   }
 
   register(body) {
-    return this._request(`${this._baseUrl}signup`, {
+    return this._request(`${this._baseUrl}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +25,7 @@ class Api {
   }
 
   login(body) {
-    return this._request(`${this._baseUrl}signin`, {
+    return this._request(`${this._baseUrl}/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ class Api {
   }
 
   checkToken(token) {
-    return this._request(`${this._baseUrl}users/me`, {
+    return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
