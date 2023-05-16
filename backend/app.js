@@ -6,9 +6,11 @@ const { celebrate, Joi, errors } = require('celebrate');
 const router = require('./routes');
 const defaultError = require('./errors/default');
 const { createUser, login } = require('./controllers/users');
+const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const { REGEXP } = require('./utils/constants');
 const NotFoundError = require('./errors/notfound');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
@@ -50,9 +52,19 @@ app.use((req, res, next) => {
   next(new NotFoundError('Такого адреса не существует.'));
 });
 
+app.use(errorLogger);
 app.use(defaultError);
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
+
+app.use(requestLogger);
+app.use(cors);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.listen(3000, () => {
   console.log('This server is start on 3000');
