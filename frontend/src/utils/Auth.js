@@ -45,6 +45,6 @@ class Api {
   }
 }
 const apiConfig = {
-  baseUrl: "https://auth.nomoreparties.co/",
+  baseUrl: 'https://api.hellomesto.nomoredomains.monster',
 };
 export const auth = new Api(apiConfig);
