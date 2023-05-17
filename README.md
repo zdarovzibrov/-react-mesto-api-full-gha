@@ -10,8 +10,8 @@
 
 ## Ссылки на проект
 
-***IP-адрес*** *51.250.105.250*
+IP 51.250.105.250
 
-***Frontend*** https://hellomesto.nomoredomains.monster
+Frontend https://hellomesto.nomoredomains.monster
 
-***Backend***  https://api.hellomesto.nomoredomains.monster/
+Backend https://api.hellomesto.nomoredomains.monster
