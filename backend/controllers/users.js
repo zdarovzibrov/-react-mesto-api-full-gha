@@ -1,3 +1,4 @@
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -5,6 +6,8 @@ const UnauthorizedError = require('../errors/unauthorized');
 const NotFoundError = require('../errors/notfound');
 const ConflictError = require('../errors/conflict');
 const BadRequestError = require('../errors/badrequest');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getAllUsers = (req, res, next) => {
   User.find({})
@@ -61,7 +64,11 @@ const login = (req, res, next) => {
           if (!matched) {
             return next(new UnauthorizedError('Не правильно указан логин или пароль.'));
           }
-          const token = jwt.sign({ _id: user._id }, 'super-secret-key', { expiresIn: '7d' });
+
+          const token = jwt.sign({ _id: user._id },
+
+            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+             { expiresIn: '7d' });
           return res.send({ token });
         });
     })
