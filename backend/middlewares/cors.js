@@ -5,7 +5,8 @@ const allowedCors = [
   'https://api.hellomesto.nomoredomains.monster',
   'localhost:3000',
   'http://localhost:3000',
-  'http://localhost:3001',
+  'localhost:3001',
+  'http://localhost:3001'
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET, HEAD, PUT, PATCH, POST, DELETE';

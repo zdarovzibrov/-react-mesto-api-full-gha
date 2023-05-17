@@ -83,10 +83,10 @@ class Api {
   }
 }
 const apiConfig = {
-  baseUrl: 'https://api.hellomesto.nomoredomains.monster',
+  baseUrl: "https://api.hellomesto.nomoredomains.monster",
   headers: {
-    authorization: 'd7e9d7f4-bd5f-4a83-9744-cc8e47167bac',
-    "Content-Type": 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+    "Content-Type": "application/json",
   },
 };
 export const api = new Api(apiConfig);
