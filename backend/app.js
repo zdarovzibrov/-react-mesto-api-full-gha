@@ -6,6 +6,7 @@ const { celebrate, Joi, errors } = require('celebrate');
 const router = require('./routes');
 const defaultError = require('./errors/default');
 const { createUser, login } = require('./controllers/users');
+const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const { REGEXP } = require('./utils/constants');
 const NotFoundError = require('./errors/notfound');
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+app.use(cors);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
