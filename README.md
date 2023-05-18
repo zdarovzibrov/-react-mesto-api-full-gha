@@ -12,6 +12,6 @@
 
 IP 51.250.105.250
 
-Frontend https://hellomesto.nomoredomains.monster
+Frontend
 
-Backend https://api.hellomesto.nomoredomains.monster
+Backend 
