@@ -30,13 +30,27 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(isLogged) {
+      Promise.all([api.getProfile(), api.getInitialCards()])
+          .then(([user, cards]) => {
+            setCurrentUser(user);
+            setCards(cards);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
+  }, [isLogged]);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       auth
         .checkToken(token)
         .then((res) => {
-            setIsLogged(true);
-            // setEmail(res.data.email);
+          console.log(res.email)
+          setIsLogged(true);
+            setEmail(res.email);
             navigate("/");
         })
         .catch((err) => {
