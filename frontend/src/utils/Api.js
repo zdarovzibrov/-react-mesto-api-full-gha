@@ -4,15 +4,15 @@ class Api {
     this._baseUrl = baseUrl;
   }
 
-  _request(url, options) {
-    return fetch(url, options).then(this._response);
-  }
-
   _response(response) {
     if (response.ok) {
       return response.json();
     }
     return Promise.reject(`Произошла ошибка: ${response.status}`);
+  }
+
+  _request(url, options) {
+    return fetch(url, options).then(this._response);
   }
 
   getProfile() {

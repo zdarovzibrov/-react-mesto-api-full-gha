@@ -30,22 +30,33 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(isLogged) {
+      Promise.all([api.getProfile(), api.getInitialCards()])
+          .then(([user, cards]) => {
+            setCurrentUser(user);
+            setCards(cards);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
+  }, [isLogged]);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       auth
         .checkToken(token)
         .then((res) => {
-          if (res) {
             setIsLogged(true);
             setEmail(res.data.email);
             navigate("/");
-          }
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
@@ -80,7 +91,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
