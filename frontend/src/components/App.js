@@ -39,6 +39,7 @@ function App() {
           .catch((error) => {
             console.log(error);
             console.log(error);
+            console.log
           });
     }
   }, [isLogged]);
