@@ -10,8 +10,8 @@
 
 ## Ссылки на проект
 
-IP 51.250.105.250
+IP 84.201.166.35
 
-Frontend
+Frontend https://hellomesto.nomoredomains.monster
 
-Backend 
+Backend https://api.hellomesto.nomoredomains.monster
