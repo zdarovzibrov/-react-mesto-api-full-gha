@@ -59,17 +59,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    Promise.all([api.getProfile(), api.getInitialCards()])
-      .then(([user, cards]) => {
-        setCurrentUser(user);
-        setCards(cards);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   function handleCardClick(data) {
     setSelectedCard(data);
   }
