@@ -42,7 +42,7 @@ function App() {
       Promise.all([api.getProfile(), api.getInitialCards()])
           .then(([user, cards]) => {
             setCurrentUser(user);
-            setCards(cards);
+            setCards(cards.reverse());
           })
           .catch((error) => {
           });
