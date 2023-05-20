@@ -19,6 +19,8 @@
 @import url("./blocks/profile/__work/profile__work.css");
 @import url("./blocks/profile/__edit-button/profile__edit-button.css");
 @import url("./blocks/profile/__add-button/profile__add-button.css");
+@import url("./blocks/profile/__avatar-container/profile__avatar-container.css");
+@import url("./blocks/profile/__updavatar-button/profile__updavatar-button.css");
 
 @import url("./blocks/card/card.css");
 @import url("./blocks/card/__item/card__item.css");
