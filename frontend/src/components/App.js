@@ -8,7 +8,7 @@ import { CurrentUserContext } from "../context/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import { api } from "../utils/Api";
+import { Api } from "../utils/Api";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { auth } from "../utils/Auth.js";
 import Register from "./Register";
@@ -29,6 +29,14 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
 
+  const api = new Api({
+    baseUrl: "https://api.hellomesto.nomoredomains.monster",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      "Content-Type": "application/json",
+    },
+  })
+
   useEffect(() => {
     if(isLogged) {
       Promise.all([api.getProfile(), api.getInitialCards()])
@@ -37,9 +45,6 @@ function App() {
             setCards(cards);
           })
           .catch((error) => {
-            console.log(error);
-            console.log(error);
-            console.log
           });
     }
   }, [isLogged]);
@@ -51,6 +56,7 @@ function App() {
         .checkToken(token)
         .then((res) => {
           console.log(res.email)
+          setCurrentUser(res)
           setIsLogged(true);
             setEmail(res.email);
             navigate("/");
@@ -59,7 +65,7 @@ function App() {
           console.log(err);
         });
     }
-  }, []);
+  }, [navigate]);
 
   function handleCardClick(data) {
     setSelectedCard(data);
